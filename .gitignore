@@ -1,0 +1,11 @@
+# Ignore Python project files
+__pycache__/
+
+# Ignore IDE project files
+.vscode/
+.idea/
+.pycharm/
+
+# Ignore virtual environment files
+venv/
+env/

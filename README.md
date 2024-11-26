@@ -16,13 +16,13 @@ The Java Type-Along Grader is a Python tool for comparing and grading student Ja
    cd JavaTypeAlongGrader
    ```
 
-3. Run the installation script:
+3. Run the script:
 
    ```bash
    ./runapp.sh
    ```
 
-   This will install dependencies and launch the application. Supported on **Linux** and **Mac** only.
+   This will install dependencies and launch the application. Supported on **Linux** and **Mac** only. It's recommended to run this script to launch the application each time.
 
 ---
 

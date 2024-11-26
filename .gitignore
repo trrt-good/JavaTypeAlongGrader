@@ -1,11 +1,9 @@
-# Ignore Python project files
-__pycache__/
+# Ignore everything
+*
 
-# Ignore IDE project files
-.vscode/
-.idea/
-.pycharm/
-
-# Ignore virtual environment files
-venv/
-env/
+# Except for these files
+!typealong_grader.py
+!typealong_app.py
+!README.md
+!LICENSE
+!requirements.txt

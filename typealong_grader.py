@@ -5,6 +5,9 @@ import argparse
 import pandas
 from typing import List, Tuple
 
+# add eol notes to readme
+# fix header comments
+
 def myers_diff(a, b):
     """Compute the Myers diff between two sequences."""
     n, m = len(a), len(b)
@@ -71,17 +74,18 @@ def build_diff(a, b, trace):
 def preprocess_java_code(code: str, ignore_comments: str = 'none') -> str:
     """Preprocess Java code by removing headers and optionally comments."""
     # Remove header (text before 'import' or 'public class')
-    code = re.sub(r'^.*?(import|public\s+class)', r'\1', code, flags=re.DOTALL).strip()
+    code = re.sub(r'^.*?^(import|public\s+class)', r'\1', code, flags=re.DOTALL | re.MULTILINE).strip()
 
     # Remove comments based on the ignore_comments level
     if ignore_comments == 'all':
         code = re.sub(r'//.*?$|/\*.*?\*/', '', code, flags=re.MULTILINE | re.DOTALL)
     elif ignore_comments == 'eol':
         code = re.sub(r'^(.*\S)[ \t]*//.*$', r'\1', code, flags=re.MULTILINE)
-
+        
     # Normalize line endings and replace tabs with spaces
     return '\n'.join(line.rstrip().replace('\t', '    ') 
                      for line in code.replace('\r\n', '\n').replace('\r', '\n').split('\n'))
+    
 
 def process_diff_results(diff_results: List[Tuple[str, str]]) -> dict:
     """Process the results of the Myers diff algorithm with more detailed mistake tracking."""
@@ -161,9 +165,9 @@ def process_diff_results(diff_results: List[Tuple[str, str]]) -> dict:
     if newline_groups > 0:
         mistake_tags.append(f"NewLineErrors:{newline_groups}")
     if text_insertions > 0:
-        mistake_tags.append(f"Insertions:{text_insertions}")
+        mistake_tags.append(f"ExtraCharacters:{text_insertions}")
     if text_deletions > 0:
-        mistake_tags.append(f"Deletions:{text_deletions}")
+        mistake_tags.append(f"MissingCharacters:{text_deletions}")
     if comment_count > 0:
         mistake_tags.append(f"Comments:{comment_count}")
 

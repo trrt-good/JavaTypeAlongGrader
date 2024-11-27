@@ -12,7 +12,7 @@ from typealong_grader import grade_typealong, find_java_files
 class TypeAlongGraderApp(QWidget):
     def __init__(self):
         super().__init__()
-        self.initUI()
+        self.initUI() 
 
     def initUI(self):
         self.setWindowTitle('Type-Along Grading Tool')
